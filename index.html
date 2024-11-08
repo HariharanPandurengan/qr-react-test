@@ -8,10 +8,11 @@
   <div id="decodedValue"></div>
   <script>
   
-    const getQueryParam = (param) => {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    };
+    function getPathParams() { 
+      const path = window.location.pathname; 
+      const params = path.split('/').filter(param => param); 
+      return params; 
+    }
     
     
     const decryptString = (encryptedString, secretKey) => {
@@ -20,7 +21,7 @@
     };
 
     window.onload = () => {
-      const encryptedData = getQueryParam('data');
+      const encryptedData = getPathParams();;
       const secretKey = 'url'; 
 
       if (encryptedData) {
