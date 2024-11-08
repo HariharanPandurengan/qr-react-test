@@ -23,7 +23,7 @@
     window.onload = () => {
       const encryptedData = getPathParams();;
       const secretKey = 'url'; 
-      if (encryptedData.lenght !== 0) {
+      if (encryptedData.length !== 0) {
         const decodedValue = decryptString(encryptedData, secretKey);
         document.getElementById('decodedValue').innerText = 'Decoded Value: ' + decodedValue;
       } else {
