@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decode Page</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+</head>
+<body>
+  <div id="decodedValue"></div>
+  <script>
+  
+    const getQueryParam = (param) => {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    };
+    
+    
+    const decryptString = (encryptedString, secretKey) => {
+      const bytes = CryptoJS.AES.decrypt(decodeURIComponent(encryptedString), secretKey);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    };
+
+    window.onload = () => {
+      const encryptedData = getQueryParam('data');
+      const secretKey = 'url'; 
+
+      if (encryptedData) {
+        const decodedValue = decryptString(encryptedData, secretKey);
+        document.getElementById('decodedValue').innerText = 'Decoded Value: ' + decodedValue;
+      } else {
+        document.getElementById('decodedValue').innerText = 'No data found';
+      }
+    };
+  </script>
+</body>
+</html>
