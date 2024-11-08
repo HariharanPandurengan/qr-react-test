@@ -21,7 +21,8 @@
     };
 
     window.onload = () => {
-      const encryptedData = getPathParams();;
+      const encryptedData = getPathParams();
+      console.log(encryptedData.length);
       const secretKey = 'url'; 
       if (encryptedData.length !== 0) {
         const decodedValue = decryptString(encryptedData, secretKey);
